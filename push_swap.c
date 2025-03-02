@@ -1,23 +1,25 @@
-int	issorted(t_elements	*vars)
-{
-	t_stak	*tmp;
+#include "push_swap.h"
 
-	tmp = vars.a;
-	while (tmp != 0 && tmp->next != 0)
-	{
-		if (tmp->pos > tmp->next->pos)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
+// int	issorted(t_stak	**a)
+// {
+// 	t_stak	*tmp;
 
-void	free_matrix(char **mat)
+// 	tmp = *a;
+// 	while (tmp && tmp.next)
+// 	{
+// 		if (tmp.pos > tmp.next.pos)
+// 			return (0);
+// 		tmp = tmp.next;
+// 	}
+// 	return (1);
+// }
+
+void	free_matrixps(char **mat)
 {
 	int	i;
 
 	i = 0;
-	while (mat)
+	while (mat[i])
 		i++;
 	while (i > 0)
 	{
@@ -28,6 +30,18 @@ void	free_matrix(char **mat)
 	free(mat);
 }
 
+void	free_stack(t_stak *head)
+{
+	t_stak	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = (head)->next;
+		free(tmp);
+	}
+}
+
 int main (int argc, char **argv)
 {
 	t_elements	vars;
@@ -35,10 +49,12 @@ int main (int argc, char **argv)
 
     if (isvalid(argc, argv) == 0)
         return (ft_printf("imput invalid"), 0);
-	vars.a = init_list(argc, argv)
+	vars.a = init_list(argc, argv);
 	vars.b = 0;
-	setpos(&vars.a, count_nodes(vars.a));
+	setpos(vars.a, count_nodes(vars.a));
+	print_list(vars.a);
 	sorting(&vars);
-	freevars(&vars);
+	// freevars(&vars.a);
+	// freevars(&vars.b);
 	return(0);
 }

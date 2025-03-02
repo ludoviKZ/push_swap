@@ -1,0 +1,1 @@
+cc push_swap.c stackmanagment.c validate.c rotate.c rrotate.c sorting.c sortingutils.c swap.c  push.c -Llibft -lft

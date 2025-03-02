@@ -1,16 +1,30 @@
 #include "push_swap.h"
 
-int	find_biggest(t_stack *head)
+int	sorted(t_stack **head)
+{
+	t_stack	*tmp;
+
+	tmp = *head;
+	while (tmp && tmp->next)
+	{
+		if (tmp->pos > tmp->next->pos)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+int	find_biggest(t_stak *head)
 {
 	int		big;
-	t_stack	*tmp;
+	t_stak	*tmp;
 
 	big = INT_MIN;
 	tmp = head;
 	while (tmp)
 	{
-		if (tmp->index > big)
-			big = tmp->index;
+		if (tmp->pos > big)
+			big = tmp->pos;
 		tmp = tmp->next;
 	}
 	return (big);

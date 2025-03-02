@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 int	count_nodes(t_stak *head)
 {
 	int	i;
@@ -20,7 +22,7 @@ void	print_list(t_stak *head)
 	i = 0;
 	while (current != NULL)
 	{
-		printf("node: %d: %d	pos: %d\n", i, current->value, current-> pos);
+		ft_printf("node: %d: %d	pos: %d\n", i, current->val, current-> pos);
 		i++;
 		current = current->next;
 	}
@@ -33,7 +35,7 @@ t_stak	*make_new_node(int new_value)
 	new_node = ft_calloc(1, sizeof(t_stak));
 	if (!new_node)
 		return (NULL);
-	new_node->value = new_value;
+	new_node->val = new_value;
 	new_node->pos = 0;
 	new_node->next = NULL;
 	return (new_node);
@@ -49,9 +51,11 @@ void	addnode(t_stak **head, int new_value)
 		*head = make_new_node(new_value);
 		return ;
 	}
-	current = *head;
+	current = *head;	
 	while (current->next != NULL)
+	{
 		current = current->next;
+	}
 	new_node = make_new_node(new_value);
 	current->next = new_node;
 }
@@ -68,7 +72,7 @@ void	setpos(t_stak *head, int link_size)
 		while (tmp)
 		{
 			if (!tmp->pos && (biggest == NULL
-					|| tmp->value > biggest->value))
+					|| tmp->val > biggest->val))
 				biggest = tmp;
 			tmp = tmp->next;
 		}
@@ -79,11 +83,12 @@ void	setpos(t_stak *head, int link_size)
 
 t_stak	*init_list(int argc, char **argv)
 {
-	t_stak	*stack_stack_
+	t_stak	*stack_a;
+	char	**matr;
 	int		i;
 
-	stack_a = NULL;
 	i = 0;
+	stack_a = 0;
 	if (argc == 2)
 		matr = ft_split(argv[1], ' ');
 	else
@@ -97,6 +102,6 @@ t_stak	*init_list(int argc, char **argv)
 		i++;
 	}
 	if (argc == 2)
-		free_matrix(matr);
+		free_matrixps(matr);
 	return (stack_a);
 }

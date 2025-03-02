@@ -1,3 +1,15 @@
+#include "push_swap.h"
+
+int	count_arg(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
+
 void	free_matrix(char **arr)
 {
 	int	i;
@@ -45,7 +57,7 @@ int	isnbr(char *matr)
 		i++;
 	while (matr[i])
 	{
-		if (ft_isdigit(matr[i]) == 0)
+		if (ft_isdigit(matr[i]) == 1)
 			return (1);
 		i++;
 	}
@@ -65,6 +77,7 @@ int isvalid (int argc, char **argv)
 		matr = argv + 1;
     if (allunique(matr) == 1)
 			return (0);
+	
 	while (matr[i] != 0)
 	{
 		nmbr = ft_atoi(matr[i]);
@@ -74,7 +87,5 @@ int isvalid (int argc, char **argv)
            return (0);
 		i++;
 	}
-	if (argc == 2)
-		return (free_matrix(matr), 1);
-    return (0);
+	return (free_matrix(matr), 1);
 }
