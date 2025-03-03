@@ -41,7 +41,6 @@ void	sorting( t_elements *vars);
 int		issorted(t_elements *vars);
 void	free_stacks(t_elements *vars);
 int		find_first(t_stak *head);
-int		find_sizebit(int n);
 int		count_nodes(t_stak *head);
 void	print_list(t_stak *head);
 t_stak	*make_new_node(int new_value);
@@ -68,5 +67,10 @@ void	r_rotate(t_stak **stack);
 void	r_rotate_a(t_elements	*vars);
 void	r_rotate_b(t_elements	*vars);
 void	r_rotate_ab(t_elements	*vars);
-
+void	sort_turk(t_elements *vars);
+int calcleast(t_elements *vars);
+int	findnode(t_stak *stack, int find);
+void	smart_rota(t_elements *vars,int pos_next);
+void	smart_rotb(t_elements *vars,int pos_next);
+int	findquick (t_elements *vars, t_calcs *v);
 #endif

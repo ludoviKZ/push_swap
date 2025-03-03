@@ -45,84 +45,6 @@ void	sort_five(t_elements *vars)
 		swap_a(vars);
 }
 
-void	sort_bad(t_elements *vars)
-{
-	int	largest;
-	int	max_bits;
-	int	i;
-	int	n;
-
-	largest = find_first(vars->a);
-	max_bits = find_sizebit(largest);
-	i = 0;
-	while (i < max_bits)
-	{
-		n = 0;
-		while (n <= largest)
-		{
-			if (((vars->a)->pos >> i) & 1)
-				rotate_a (vars);
-			else
-				push_b(vars);
-			n++;
-		}
-		while (vars->b)
-			push_a(vars);
-		i++;
-	}
-}
-void smart_rota(t_elements *vars,int pos_next)
-{
-	int		stack_size;
-
-	stack_size = count_nodes(vars->a);
-	if (pos_next <= stack_size/2)
-	{
-		while (pos_next-- != 0)
-			rotate_a(vars);
-	}
-	else
-	{
-		while ((stack_size - pos_next) != -1)
-		{
-			r_rotate_a(vars);
-			pos_next ++;
-		}
-	}
-}
-void smart_rotb(t_elements *vars,int pos_next)
-{
-	int		stack_size;
-
-	stack_size = count_nodes(vars->b);
-	if (pos_next <= stack_size/2)
-	{
-		while (pos_next-- != 0)
-			rotate_b(vars);
-	}
-	else
-	{
-		while ((stack_size - pos_next) != -1)
-		{
-			r_rotate_b(vars);
-			pos_next ++;
-		}
-	}
-}
-
-int findquick (t_elements *vars, t_calcs *v)
-{
-	int node;
-
-	node = findnode(vars->b, (v->copya->pos - 1));
-	if (node > (count_nodes(vars->b)/2))
-		node = (count_nodes(vars->b) - node + 1);
-	if (node + v->add < v->least)
-	{
-		v->ret = v->pos;
-		v->least = (node + v->add);
-	}
-}
 int calcleast(t_elements *vars)
 {
 	t_calcs v;
@@ -132,29 +54,34 @@ int calcleast(t_elements *vars)
 	v.add = 0;
 	v.least = INT_MAX;
 	v.copya = vars->a;
-	while( v.copya->next != 0)
+	while( v.copya->next != 0 && v.pos < 20)
 	{
-		v.add = findquick (vars, &v);
+		v.ret = findquick (vars, &v);
 		if (v.pos <= (count_nodes(v.copya)/2))
 			v.add ++;
 		else
 			v.add --; 
 		v.copya = v.copya->next;
 		v.pos ++;
+
 	}
+	printf("%i", v.ret);
+	exit (0);
 	return(v.ret);
 }
 
 void	sort_turk(t_elements *vars)
 {
-	int		to_push;
-
+	int rep = 0;
 	vars->largest = find_first(vars->a);
 	push_b(vars);
 	push_b(vars);
 	while (count_nodes(vars->a) > 2)
 	{
-		to_push = calcleast(vars);
+		if (rep++ >= 30)
+		{print_list(vars->a); print_list(vars->b);
+			exit(0);
+		}
 		smart_rota(vars, calcleast(vars));
 		smart_rotb(vars,findnode(vars->b, (vars->a->pos - 1)));
 	}
