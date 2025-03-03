@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/03 16:17:03 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/03 17:18:21 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// int	issorted(t_stak	**a)
-// {
-// 	t_stak	*tmp;
+int	issorted(t_elements *vars)
+{
+	t_stak	*copy;
 
-// 	tmp = *a;
-// 	while (tmp && tmp.next)
-// 	{
-// 		if (tmp.pos > tmp.next.pos)
-// 			return (0);
-// 		tmp = tmp.next;
-// 	}
-// 	return (1);
-// }
+	copy = vars->a;
+	while (copy && copy->next)
+	{
+		if (copy->pos > copy->next->pos)
+			return (0);
+		copy = copy->next;
+	}
+	return (1);
+}
 
 void	free_matrixps(char **mat)
 {
@@ -30,31 +42,39 @@ void	free_matrixps(char **mat)
 	free(mat);
 }
 
-void	free_stack(t_stak *head)
+void	free_stacks(t_elements	*vars)
 {
-	t_stak	*tmp;
+	t_stak	*copy;
 
-	while (head)
+	while (vars->a != 0)
 	{
-		tmp = head;
-		head = (head)->next;
-		free(tmp);
+		copy = vars->a;
+		vars->a = vars->a->next;
+		free(copy);
+	}
+	while (vars->b != 0)
+	{
+		copy = vars->b;
+		vars->b = vars->b->next;
+		free(copy);
 	}
 }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_elements	vars;
 
-
-    if (isvalid(argc, argv) == 0)
-        return (ft_printf("imput invalid"), 0);
+	vars.moves = 0;
+	if (isvalid(argc, argv) == 0)
+		return (ft_printf("imput invalid"), 0);
 	vars.a = init_list(argc, argv);
 	vars.b = 0;
 	setpos(vars.a, count_nodes(vars.a));
-	print_list(vars.a);
 	sorting(&vars);
-	// freevars(&vars.a);
-	// freevars(&vars.b);
-	return(0);
+	if (issorted(&vars) == 0)
+		ft_printf("error, failed to sort\n");
+	print_list(vars.a);
+	ft_printf ("\nnumber of moves%i", vars.moves);
+	free_stacks(&vars);
+	return (0);
 }

@@ -1,30 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/03 16:17:06 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/03 17:16:18 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	push(t_stak **stack_from, t_stak **stack_to)
+void	push(t_stak **stack_out, t_stak **stack_in)
 {
 	t_stak	*tmp;
 
-	if (stack_from == NULL || *stack_from == NULL)
+	if (stack_out == 0 || *stack_out == 0)
 		return ;
-	tmp = *stack_from;
-	*stack_from = (*stack_from)->next;
-	if (stack_to == NULL)
-		*stack_to = tmp;
+	tmp = *stack_out;
+	*stack_out = (*stack_out)->next;
+	if (stack_in == 0)
+		*stack_in = tmp;
 	else
 	{
-		tmp->next = *stack_to;
-		*stack_to = tmp;
+		tmp->next = *stack_in;
+		*stack_in = tmp;
 	}
 }
 
 void	push_a(t_elements	*vars)
 {
 	push(&vars->b, &vars->a);
-	write(1, "pa\n", 3);
+	vars->moves ++;
+	ft_printf("pa\n");
 }
 
 void	push_b(t_elements	*vars)
 {
 	push(&vars->a, &vars->b);
-	write(1, "pb\n", 3);
+	vars->moves ++;
+	ft_printf( "pb\n");
 }

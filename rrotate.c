@@ -1,38 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rrotate.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/03 16:17:12 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/03 17:16:30 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	rotate_ccw(t_stak **head)
+void	r_rotate(t_stak **stack)
 {
 	t_stak	*prev_tail;
 	t_stak	*new_tail;
 
-	if (*head == NULL || (*head)->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
-	prev_tail = *head;
+	prev_tail = *stack;
 	while (prev_tail->next != NULL)
 	{
 		new_tail = prev_tail;
 		prev_tail = prev_tail->next;
 	}
-	prev_tail->next = *head;
+	prev_tail->next = *stack;
 	new_tail->next = NULL;
-	*head = prev_tail;
+	*stack = prev_tail;
 }
 
 void	r_rotate_a(t_elements	*vars)
 {
-	rotate_ccw(&vars->a);
-	write(1, "rra\n", 4);
+	r_rotate(&vars->a);
+	vars->moves ++;
+	ft_printf("rra\n");
 }
 
 void	r_rotate_b(t_elements	*vars)
 {
-	rotate_ccw(&vars->b);
-	write(1, "rrb\n", 4);
+	r_rotate(&vars->b);
+	vars->moves ++;
+	ft_printf("rrb\n");
 }
 
 void	r_rotate_ab(t_elements	*vars)
 {
-	rotate_ccw(&vars->a);
-	rotate_ccw(&vars->b);
-	write(1, "rrr\n", 4);
+	r_rotate(&vars->a);
+	r_rotate(&vars->b);
+	vars->moves ++;
+	ft_printf("rrr\n");
 }

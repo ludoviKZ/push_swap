@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/03 16:17:30 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/03 16:20:29 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	count_arg(char **array)
@@ -74,16 +86,16 @@ int isvalid (int argc, char **argv)
 	if (argc == 2)
 		matr = ft_split(argv[1], ' ');
 	else
-		matr = argv + 1;
+		matr = (argv + 1);
     if (allunique(matr) == 1)
 			return (0);
-	
 	while (matr[i] != 0)
 	{
 		nmbr = ft_atoi(matr[i]);
 		if (nmbr < INT_MIN || nmbr > INT_MAX)
             return (0);
-		if (!isnbr(matr[i]) == 1)
+		
+		if (isnbr(matr[i]) == 0)
            return (0);
 		i++;
 	}

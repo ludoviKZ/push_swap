@@ -1,44 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sortingutils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/03 20:33:06 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int	sorted(t_stack **head)
+int	findnode(t_stak *stack, int find)
 {
-	t_stack	*tmp;
+	int		posit;
+	int		closestval;
+	int		closest;
+	t_stak	*copy;
 
-	tmp = *head;
-	while (tmp && tmp->next)
+	copy = stack;
+	posit = 0;
+	closest = 0;
+	if (copy->pos > closest && copy->pos < find)
+			closest == copy->pos;
+	while (copy->pos != find || copy->next != 0)
 	{
-		if (tmp->pos > tmp->next->pos)
-			return (0);
-		tmp = tmp->next;
+		copy = copy->next;
+		posit ++;
+		if (copy->pos > closest && copy->pos < find)
+			closest = copy->pos;
 	}
-	return (1);
+	if (copy->pos == find)
+		return(posit);
+	else
+		return(findnode(stack, closest));
 }
 
-int	find_biggest(t_stak *head)
+int	find_first(t_stak *head)
 {
-	int		big;
-	t_stak	*tmp;
+	t_stak	*copy;
+	int		largest;
 
-	big = INT_MIN;
-	tmp = head;
-	while (tmp)
+	largest = INT_MIN;
+	copy = head;
+	while (copy)
 	{
-		if (tmp->pos > big)
-			big = tmp->pos;
-		tmp = tmp->next;
+		if (copy->pos > largest)
+			largest = copy->pos;
+		copy = copy->next;
 	}
-	return (big);
-}
-
-int	find_bits(int n)
-{
-	int	max_bits;
-
-	max_bits = 0;
-	while (bn > 0)
-	{
-		n >>= 1;
-		max_bits++;
-	}
-	return (max_bits);
+	return (largest);
 }
