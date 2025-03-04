@@ -36,7 +36,6 @@ typedef struct s_calcs
 
 void	sort_three(t_elements *vars);
 void	sort_five(t_elements *vars);
-void	sort_bad(t_elements *vars);
 void	sorting( t_elements *vars);
 int		issorted(t_elements *vars);
 void	free_stacks(t_elements *vars);
@@ -68,9 +67,10 @@ void	r_rotate_a(t_elements	*vars);
 void	r_rotate_b(t_elements	*vars);
 void	r_rotate_ab(t_elements	*vars);
 void	sort_turk(t_elements *vars);
-int calcleast(t_elements *vars);
+int calcleast(t_stak *from, t_stak *to);
 int	findnode(t_stak *stack, int find);
-void	smart_rota(t_elements *vars,int pos_next);
-void	smart_rotb(t_elements *vars,int pos_next);
-int	findquick (t_elements *vars, t_calcs *v);
+int	smart_rota(t_elements *vars,int pos_next);
+int	smart_rotb(t_elements *vars,int pos_next);
+int	findquick (t_stak *to, t_calcs *v);
+void bunchmoves(t_elements *vars, int *rota, int *rotb, int push);
 #endif

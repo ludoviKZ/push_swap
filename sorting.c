@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/03 20:36:03 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/04 18:20:04 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	sort_five(t_elements *vars)
 		swap_a(vars);
 }
 
-int calcleast(t_elements *vars)
+int calcleast(t_stak *from, t_stak *to)
 {
 	t_calcs v;
 
@@ -53,51 +53,53 @@ int calcleast(t_elements *vars)
 	v.pos = 0;
 	v.add = 0;
 	v.least = INT_MAX;
-	v.copya = vars->a;
-	while( v.copya->next != 0 && v.pos < 20)
+	v.copya = from;
+	while( v.copya->next != 0)
 	{
-		v.ret = findquick (vars, &v);
-		if (v.pos <= (count_nodes(v.copya)/2))
+		v.ret = findquick (to, &v);
+		if (v.pos <= (count_nodes(from)/2))
 			v.add ++;
 		else
 			v.add --; 
 		v.copya = v.copya->next;
 		v.pos ++;
-
 	}
-	printf("%i", v.ret);
-	exit (0);
+	ft_printf("\n||%i--%i", v.ret, v.least);
 	return(v.ret);
 }
 
 void	sort_turk(t_elements *vars)
 {
-	int rep = 0;
-	vars->largest = find_first(vars->a);
+	int	rota;
+	int	rotb;
+
 	push_b(vars);
 	push_b(vars);
-	while (count_nodes(vars->a) > 2)
+	while (count_nodes(vars->a) > 3)
 	{
-		if (rep++ >= 30)
-		{print_list(vars->a); print_list(vars->b);
-			exit(0);
-		}
-		smart_rota(vars, calcleast(vars));
-		smart_rotb(vars,findnode(vars->b, (vars->a->pos - 1)));
+		rota = smart_rota(vars, calcleast(vars->a, vars->b));
+		if (vars->a->pos > find_first(vars->b))
+			rotb = smart_rotb(vars, findnode(vars->b, (0)));
+		else
+			rotb = smart_rotb(vars,findnode(vars->b, (vars->a->pos + 1)));
+		bunchmoves(vars, &rota, &rotb, 'b');
 	}
 	sort_three(vars);
 	while (vars->b)
 	{
-		if (vars->a->pos != (vars->b->pos + 1) && vars->b->pos != vars->largest)
-		{
-			smart_rota(vars, findnode(vars->a, (vars->b->pos + 1)));
-		}
-		push_a(vars);
+		rotb = smart_rotb(vars, calcleast(vars->b, vars->a));
+		if (vars->b->pos > find_first(vars->a))
+			rota = smart_rota(vars, findnode(vars->a, (0)));
+		else
+			rota = smart_rota(vars, findnode(vars->a, (vars->b->pos + 1)));
+		bunchmoves(vars, &rota, &rotb, 'a');
 	}
+	smart_rota(vars, findnode(vars->a, (0)));
 }
 
 void	sorting( t_elements *vars)
 {
+	vars->largest = find_first(vars->a);
 	vars->tot = count_nodes(vars->a);
 	if (issorted(vars) == 1)
 		return ;

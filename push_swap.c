@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/03 17:18:21 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/04 18:43:29 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ int	main(int argc, char **argv)
 	vars.a = init_list(argc, argv);
 	vars.b = 0;
 	setpos(vars.a, count_nodes(vars.a));
+	print_list(vars.a);
 	sorting(&vars);
 	if (issorted(&vars) == 0)
 		ft_printf("error, failed to sort\n");
-	print_list(vars.a);
-	ft_printf ("\nnumber of moves%i", vars.moves);
 	free_stacks(&vars);
 	return (0);
 }

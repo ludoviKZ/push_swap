@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/03 20:33:06 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/04 18:43:00 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	findnode(t_stak *stack, int find)
 	int		closest;
 	t_stak	*copy;
 
-	
 	copy = stack;
 	posit = 0;
 	closest = INT_MAX;
@@ -31,16 +30,10 @@ int	findnode(t_stak *stack, int find)
 		if (copy->pos < closest && copy->pos > find)
 			closest = copy->pos;
 	}
-	ft_printf("test%i\n", find);
 	if (copy->pos == find)
 		return(posit);
-	else if (closest < 999)
-		return(findnode(stack, closest));
 	else
-	{
-		ft_printf("test%i\n", find);
-		exit(0);
-	}
+		return(findnode(stack, closest));
 }
 
 int	find_first(t_stak *head)
@@ -59,55 +52,121 @@ int	find_first(t_stak *head)
 	return (largest);
 }
 
-void	smart_rota(t_elements *vars,int pos_next)
+void bunchswap(t_elements *vars, int *rota, int *rotb)
 {
+	while (rota[0] != 0 && rota[0] > 0)
+	{
+		rotate_a(vars);
+		rota[0]--;
+	}
+	while (rota[0] != 0 && rota[0] < 0)
+	{
+		r_rotate_a(vars);
+		rota[0]++;
+	}
+	while (rotb[0] != 0 && rotb[0] > 0)
+	{
+		rotate_b(vars);
+		rotb[0]--;
+	}
+	while (rotb[0] != 0 && rotb[0] < 0)
+	{
+		r_rotate_b(vars);
+		rotb[0]++;
+	}
+}
+
+void bunchmoves(t_elements *vars, int *rota, int *rotb, int push)
+{
+	if (rota[0] > 0 && rotb[0] > 0)
+	{
+		while(rota[0] != 0 && rotb[0] != 0)
+		{
+			rotate_ab(vars);
+			rota[0] --;
+			rotb[0] --;
+		}
+	}
+	if (rota[0] < 0 && rotb[0] < 0)
+	{
+		
+		while(rota[0] != 0 && rotb[0] !=0)
+		{
+			r_rotate_ab(vars);
+			rota[0] ++;
+			rotb[0] ++;
+		}
+	}
+	bunchswap(vars, rota, rotb);
+	if (push == 'b')
+		push_b(vars);
+	else
+		push_a(vars);
+	rotb[0] = 0;
+	rota[0] = 0;
+}
+
+int	smart_rota(t_elements *vars,int pos_next)
+{
+	int		ret;
 	int		stack_size;
 
+	ret = 0;
 	stack_size = count_nodes(vars->a);
 	if (pos_next <= stack_size/2)
 	{
-		while (pos_next-- != 0)
-			rotate_a(vars);
+		while (pos_next != 0)
+		{
+			pos_next --;
+			ret ++;
+		}
 	}
 	else
 	{
-		while ((stack_size - pos_next) != -1)
+		while ((stack_size - pos_next) != 0)
 		{
-			r_rotate_a(vars);
+			ret --;
 			pos_next ++;
 		}
 	}
+	return (ret);
 }
 
-void	smart_rotb(t_elements *vars,int pos_next)
+int	smart_rotb(t_elements *vars,int pos_next)
 {
+	int		ret;
 	int		stack_size;
 
+	ret = 0;
 	stack_size = count_nodes(vars->b);
 	if (pos_next <= stack_size/2)
 	{
-		while (pos_next-- != 0)
-			rotate_b(vars);
+		while (pos_next != 0)
+		{
+			pos_next --;
+			ret ++;
+		}
 	}
 	else
 	{
-		while ((stack_size - pos_next) != -1)
+		while ((stack_size - pos_next) != 0)
 		{
-			r_rotate_b(vars);
+			ret --;
 			pos_next ++;
 		}
 	}
+	return(ret);
 }
 
-int	findquick (t_elements *vars, t_calcs *v)
+int	findquick (t_stak *to, t_calcs *v)
 {
 	int node;
-	if (v->copya->pos > find_first(vars->b))
-		node = findnode(vars->b, 0);
+	if (v->copya->pos > find_first(to))
+		node = findnode(to, 0);
 	else
-		node = findnode(vars->b, (v->copya->pos + 1));
-	if (node > (count_nodes(vars->b)/2))
-		node = (count_nodes(vars->b) - node + 1);
+		node = findnode(to, (v->copya->pos + 1));
+	if (node > (count_nodes(to)/2))
+		node = (count_nodes(to) - node + 1);
 	if (node + v->add < v->least)
 	{
 		v->ret = v->pos;
