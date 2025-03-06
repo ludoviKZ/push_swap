@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/06 17:39:44 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/06 19:09:01 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	findnode(t_stak *stack, int find)
 	copy = stack;
 	posit = 0;
 	closest = INT_MAX;
+	if (find > find_first(stack))
+		return(findnode(stack, (0)));
 	if (copy->pos < closest && copy->pos > find)
 			closest = copy->pos;
 	while (copy->pos != find && copy->next != 0)

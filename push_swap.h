@@ -67,7 +67,6 @@ void	r_rotate_a(t_elements	*vars);
 void	r_rotate_b(t_elements	*vars);
 void	r_rotate_ab(t_elements	*vars);
 void	sort_turk(t_elements *vars);
-int calcleastrev(t_stak *from, t_stak *to);
 int	findquickrev (t_stak *to, t_calcs *v);
 int node_pos (t_stak *stack, int i);
 int calcleast(t_stak *from, t_stak *to);

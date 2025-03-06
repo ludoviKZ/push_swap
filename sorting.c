@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/06 17:44:39 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/06 19:10:28 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,7 @@ void	sort_turk(t_elements *vars)
 	{
 		to_pushval = node_pos(vars->a, calcleast(vars->a, vars->b));
 		rota = smart_rota(vars, calcleast(vars->a, vars->b));
-		if (to_pushval > find_first(vars->b))
-			rotb = smart_rotb(vars, findnode(vars->b, (0)));
-		else
-			rotb = smart_rotb(vars, findnode( vars->b, (to_pushval -1)));
-		ft_printf("|| %i|| %i\n", rota, rotb);
+		rotb = smart_rotb(vars, findnode( vars->b, (to_pushval -1)));
 		bunchmoves(vars, &rota, &rotb, 'b');
 	}
 	sort_three(vars);
@@ -132,15 +128,12 @@ void	sort_turk(t_elements *vars)
 	{
 		to_pushval = node_pos(vars->b, calcleastrev(vars->b, vars->a));
 		rotb = smart_rotb(vars, calcleastrev(vars->b, vars->a));
-		if (to_pushval > find_first(vars->a))
-			rota = smart_rota(vars, findnode(vars->a, (0)));
-		else
-			rota = smart_rota(vars, findnode(vars->a, (to_pushval + 1)));
+		rota = smart_rota(vars, findnode(vars->a, (to_pushval + 1)));
 		bunchmoves(vars, &rota, &rotb, 'a');
 	}
+	
 	rota = smart_rota(vars, findnode(vars->a, (0)));
 	bunchmoves(vars, &rota, &rotb, 'a');
-	printf("\nmovesmade %i\n", vars->moves);
 }
 
 void	sorting( t_elements *vars)
