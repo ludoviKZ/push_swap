@@ -22,7 +22,7 @@ typedef struct s_elements
 	struct s_stak  *b; 
 	long int	tot;
 	int		largest;
-	long int	moves;
+	int	moves;
 }           t_elements;
 
 typedef struct s_calcs
@@ -67,6 +67,9 @@ void	r_rotate_a(t_elements	*vars);
 void	r_rotate_b(t_elements	*vars);
 void	r_rotate_ab(t_elements	*vars);
 void	sort_turk(t_elements *vars);
+int calcleastrev(t_stak *from, t_stak *to);
+int	findquickrev (t_stak *to, t_calcs *v);
+int node_pos (t_stak *stack, int i);
 int calcleast(t_stak *from, t_stak *to);
 int	findnode(t_stak *stack, int find);
 int	smart_rota(t_elements *vars,int pos_next);

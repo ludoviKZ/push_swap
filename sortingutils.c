@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/04 18:43:00 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/06 17:39:44 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ void bunchmoves(t_elements *vars, int *rota, int *rotb, int push)
 {
 	if (rota[0] > 0 && rotb[0] > 0)
 	{
-		while(rota[0] != 0 && rotb[0] != 0)
+		while(rota[0] > 0 && rotb[0] > 0)
 		{
 			rotate_ab(vars);
 			rota[0] --;
 			rotb[0] --;
 		}
 	}
-	if (rota[0] < 0 && rotb[0] < 0)
+	else if (rota[0] < 0 && rotb[0] < 0)
 	{
 		
-		while(rota[0] != 0 && rotb[0] !=0)
+		while(rota[0] < 0 && rotb[0] < 0)
 		{
 			r_rotate_ab(vars);
 			rota[0] ++;
@@ -158,7 +158,7 @@ int	smart_rotb(t_elements *vars,int pos_next)
 	return(ret);
 }
 
-int	findquick (t_stak *to, t_calcs *v)
+int	findquickrev (t_stak *to, t_calcs *v)
 {
 	int node;
 	if (v->copya->pos > find_first(to))
@@ -166,7 +166,25 @@ int	findquick (t_stak *to, t_calcs *v)
 	else
 		node = findnode(to, (v->copya->pos + 1));
 	if (node > (count_nodes(to)/2))
-		node = (count_nodes(to) - node + 1);
+		node = (count_nodes(to) - node);
+	if (node + v->add < v->least)
+	{
+		v->ret = v->pos;
+		v->least = (node + v->add);
+	}
+	return (v->ret);
+}
+
+
+int	findquick (t_stak *to, t_calcs *v)
+{
+	int node;
+	if (v->copya->pos > find_first(to))
+		node = findnode(to, 0);
+	else
+		node = findnode(to, (v->copya->pos - 1));
+	if (node > (count_nodes(to)/2))
+		node = (count_nodes(to) - node);
 	if (node + v->add < v->least)
 	{
 		v->ret = v->pos;
