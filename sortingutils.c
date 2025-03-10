@@ -79,6 +79,8 @@ int nextleast(t_stak *to, int i)
 	n = node_pos(to, findnode(to, i));
 	if ( n == i)
 		return (findnode(to, i));
+	if (i > find_first(to))
+		return (findnode(to, find_first(to)));
 	while (next > 0)
 	{
 		next --;
