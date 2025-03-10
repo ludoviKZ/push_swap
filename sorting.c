@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 17:11:47 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:13:02 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	sort_turk(t_elements *vars)
 	{
 		to_pushval = node_pos(vars->a, calcleast(vars->a, vars->b));
 		rota = smart_rota(vars, calcleast(vars->a, vars->b));
-		rotb = smart_rotb(vars, findnode(vars->b, (to_pushval -1)));
+		rotb = smart_rotb(vars, nextleast(vars->b, (to_pushval -1)));
 		bunchmoves(vars, &rota, &rotb, 'b');
 	}
 	sort_three(vars);

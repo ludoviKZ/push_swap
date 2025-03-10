@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:07 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 17:23:13 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 18:44:56 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		findquickrev(t_stak *to, t_calcs *v);
 int		node_pos(t_stak *stack, int i);
 int		calcleast(t_stak *from, t_stak *to);
 int		findnode(t_stak *stack, int find);
+int		nextleast(t_stak *to, int i);
 int		smart_rota(t_elements *vars, int pos_next);
 int		smart_rotb(t_elements *vars, int pos_next);
 int		findquick(t_stak *to, t_calcs *v);

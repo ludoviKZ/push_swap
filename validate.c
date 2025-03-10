@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:30 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 17:00:49 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 18:57:17 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ int	isvalid(int argc, char **argv)
 	int		i;
 	long	nmbr;
 	char	**matr;
-
+	int		ret;
+	
+	ret = 1;
 	i = 0;
 	if (argc == 2)
 		matr = ft_split(argv[1], ' ');
@@ -96,12 +98,12 @@ int	isvalid(int argc, char **argv)
 	{
 		nmbr = ft_atoi(matr[i]);
 		if (nmbr < INT_MIN || nmbr > INT_MAX)
-			return (0);
+			ret = 0;
 		if (isnbr(matr[i]) == 0)
-			return (0);
+			ret = 0;
 		i++;
 	}
-	if (matr)
+	if (argc == 2 && matr)
 		free_matrix(matr);
-	return (1);
+	return (ret);
 }

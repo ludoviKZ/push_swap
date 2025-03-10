@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 16:59:29 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:11:10 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	main(int argc, char **argv)
 	sorting(&vars);
 	if (issorted(&vars) == 0)
 		ft_printf("error, failed to sort\n");
+	ft_printf("%i", vars.moves);
 	free_stacks(&vars);
 	return (0);
 }

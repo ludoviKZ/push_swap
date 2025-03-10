@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 17:17:53 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:28:31 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ int	findquick(t_stak *to, t_calcs *v)
 {
 	int	node;
 
-	if (v->copya->pos > find_first(to))
-		node = findnode(to, 0);
-	else
-		node = findnode(to, (v->copya->pos - 1));
+	node = nextleast(to, (v->copya->pos - 1));
 	if (node > (count_nodes(to) / 2))
 		node = (count_nodes(to) - node);
 	if (node + v->add < v->least)
@@ -72,4 +69,22 @@ int	findquick(t_stak *to, t_calcs *v)
 		v->least = (node + v->add);
 	}
 	return (v->ret);
+}
+int nextleast(t_stak *to, int i)
+{
+	int		n;
+	int		next;
+
+	next = i;
+	n = node_pos(to, findnode(to, i));
+	if ( n == i)
+		return (findnode(to, i));
+	while (next > 0)
+	{
+		next --;
+		n = node_pos(to, findnode(to, next));
+		if (n <= next && n != 0)
+			return (findnode(to, next));
+	}
+	return (findnode(to, find_first(to)));
 }
