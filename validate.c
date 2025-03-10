@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:30 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/03 16:20:29 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:28:58 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	free_matrix(char **arr)
 		if (arr[i])
 			free(arr[i]);
 	}
-	free(arr);
+	if (arr)
+		free(arr);
 }
 
 int	allunique(char **matr)
@@ -76,7 +77,7 @@ int	isnbr(char *matr)
 	return (0);
 }
 
-int isvalid (int argc, char **argv)
+int	isvalid(int argc, char **argv)
 {
 	int		i;
 	long	nmbr;
@@ -99,5 +100,7 @@ int isvalid (int argc, char **argv)
            return (0);
 		i++;
 	}
-	return (free_matrix(matr), 1);
+	if (matr)
+		free_matrix(matr);
+	return (1);
 }

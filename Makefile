@@ -10,7 +10,10 @@ RM = rm -f
 %.o : %.c
 	$(CC) $(CFLAGS) -Imlx -c -o $@ $<
 
-all: $(NAME)
+all: addlibs $(NAME)
+
+addlibs:
+	@make -C $(LIBFT_PATH) all
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME)
