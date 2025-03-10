@@ -1,4 +1,4 @@
-FILES = push_swap.c stackmanagment.c validate.c rotate.c rrotate.c sorting.c sortingutils.c swap.c  push.c
+FILES = push_swap.c stackuse.c stackuseutils.c smartmoves.c validate.c rotate.c rrotate.c sorting.c sortingutils.c swap.c  push.c
 OBJ = $(FILES:.c=.o)
 NAME = push_swap
 LIBFT_PATH = libft/

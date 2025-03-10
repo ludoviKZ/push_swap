@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/06 19:10:28 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:07:19 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,24 +89,6 @@ int calcleastrev(t_stak *from, t_stak *to)
 	ft_printf("\n||%i--%i", v.ret, v.least);
 	return(v.ret);
 }
-int node_pos (t_stak *stack, int i)
-{
-	t_stak	*copy;
-	int		ret;
-	int		move;
-
-	move = 0;
-	copy = stack;
-	ret = -1;
-	while (copy && move < i)
-	{
-		copy = copy->next;
-		move ++;
-	}
-	ret = copy->pos;
-	return (ret);
-}
-
 
 void	sort_turk(t_elements *vars)
 {
@@ -134,18 +116,4 @@ void	sort_turk(t_elements *vars)
 	
 	rota = smart_rota(vars, findnode(vars->a, (0)));
 	bunchmoves(vars, &rota, &rotb, 'a');
-}
-
-void	sorting( t_elements *vars)
-{
-	vars->largest = find_first(vars->a);
-	vars->tot = count_nodes(vars->a);
-	if (issorted(vars) == 1)
-		return ;
-	if (vars->tot <= 3)
-		sort_three(vars);
-	else if (vars->tot <= 5)
-		sort_five(vars);
-	else
-		sort_turk(vars);
 }

@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/06 18:57:42 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:05:50 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ void	free_stacks(t_elements	*vars)
 	}
 }
 
+void	sorting( t_elements *vars)
+{
+	vars->largest = find_first(vars->a);
+	vars->tot = count_nodes(vars->a);
+	if (issorted(vars) == 1)
+		return ;
+	if (vars->tot <= 3)
+		sort_three(vars);
+	else if (vars->tot <= 5)
+		sort_five(vars);
+	else
+		sort_turk(vars);
+}
+
 int	main(int argc, char **argv)
 {
 	t_elements	vars;
@@ -74,8 +88,8 @@ int	main(int argc, char **argv)
 	sorting(&vars);
 	if (issorted(&vars) == 0)
 		ft_printf("error, failed to sort\n");
-	ft_printf("moves%i", vars.moves);
 	print_list(vars.a);
+	ft_printf("moves%i", vars.moves);
 	free_stacks(&vars);
 	return (0);
 }

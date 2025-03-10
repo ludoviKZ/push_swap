@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stackmanagment.c                                   :+:      :+:    :+:   */
+/*   stackuse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:22 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/03 16:17:25 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:08:10 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,6 @@ int	count_nodes(t_stak *head)
 		i++;
 	}
 	return (i);
-}
-
-void	print_list(t_stak *head)
-{
-	t_stak	*current;
-	int		i;
-
-	current = head;
-	i = 0;
-	while (current != NULL)
-	{
-		ft_printf("node: %d: %d	pos: %d\n", i, current->val, current-> pos);
-		i++;
-		current = current->next;
-	}
 }
 
 t_stak	*make_new_node(int new_value)
