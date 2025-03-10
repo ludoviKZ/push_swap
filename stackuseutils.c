@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:09:07 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 15:09:09 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:05:54 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	find_first(t_stak *head)
 	return (largest);
 }
 
-int node_pos (t_stak *stack, int i)
+int	node_pos(t_stak *stack, int i)
 {
 	t_stak	*copy;
 	int		ret;

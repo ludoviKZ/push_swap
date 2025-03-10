@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:06 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/03 17:16:18 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:02:47 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	push_b(t_elements	*vars)
 {
 	push(&vars->a, &vars->b);
 	vars->moves ++;
-	ft_printf( "pb\n");
+	ft_printf("pb\n");
 }

@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 17:18:07 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/10 17:23:13 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -11,28 +21,28 @@
 
 typedef struct s_stak
 {
-	struct s_stak *next;
-	long		val;
-	long		pos;
+	struct s_stak	*next;
+	long			val;
+	long			pos;
 }				t_stak;
 
 typedef struct s_elements
 {
-	struct s_stak  *a;
-	struct s_stak  *b; 
-	long int	tot;
-	int		largest;
-	int	moves;
-}           t_elements;
+	struct s_stak	*a;
+	struct s_stak	*b;
+	long int		tot;
+	int				largest;
+	int				moves;
+}				t_elements;
 
 typedef struct s_calcs
 {
-	int	least;
-	int	ret;
-	int pos;
-	int add;
+	int		least;
+	int		ret;
+	int		pos;
+	int		add;
 	t_stak	*copya;
-}           t_calcs;
+}				t_calcs;
 
 void	sort_three(t_elements *vars);
 void	sort_five(t_elements *vars);
@@ -49,7 +59,7 @@ t_stak	*init_list(int argc, char **argv);
 void	free_matrixps(char **arr);
 int		allunique(char **matr);
 int		isnbr(char *matr);
-int 	isvalid (int argc, char **argv);
+int		isvalid(int argc, char **argv);
 int		count_arg(char **array);
 void	swap(t_stak	**stack);
 void	swap_a(t_elements	*vars);
@@ -67,12 +77,12 @@ void	r_rotate_a(t_elements	*vars);
 void	r_rotate_b(t_elements	*vars);
 void	r_rotate_ab(t_elements	*vars);
 void	sort_turk(t_elements *vars);
-int	findquickrev (t_stak *to, t_calcs *v);
-int node_pos (t_stak *stack, int i);
-int calcleast(t_stak *from, t_stak *to);
-int	findnode(t_stak *stack, int find);
-int	smart_rota(t_elements *vars,int pos_next);
-int	smart_rotb(t_elements *vars,int pos_next);
-int	findquick (t_stak *to, t_calcs *v);
-void bunchmoves(t_elements *vars, int *rota, int *rotb, int push);
+int		findquickrev(t_stak *to, t_calcs *v);
+int		node_pos(t_stak *stack, int i);
+int		calcleast(t_stak *from, t_stak *to);
+int		findnode(t_stak *stack, int find);
+int		smart_rota(t_elements *vars, int pos_next);
+int		smart_rotb(t_elements *vars, int pos_next);
+int		findquick(t_stak *to, t_calcs *v);
+void	bunchmoves(t_elements *vars, int *rota, int *rotb, int push);
 #endif

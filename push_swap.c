@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 16:33:39 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:59:29 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	issorted(t_elements *vars)
 	}
 	return (1);
 }
+
 void	free_matrixps(char **arr)
 {
 	int	i;
@@ -78,18 +79,15 @@ int	main(int argc, char **argv)
 {
 	t_elements	vars;
 
-		vars.moves = 0;
-		if (isvalid(argc, argv) == 0)
-			return (ft_printf("imput invalid"), 0);
-		vars.a = init_list(argc, argv);
-		vars.b = 0;
-		setpos(vars.a, count_nodes(vars.a));
-		// print_list(vars.a);
-		sorting(&vars);
-		if (issorted(&vars) == 0)
-			ft_printf("error, failed to sort\n");
-		// print_list(vars.a);
-		// ft_printf("moves%i", vars.moves);
-		free_stacks(&vars);
-		return (0);
+	vars.moves = 0;
+	if (isvalid(argc, argv) == 0)
+		return (ft_printf("imput invalid"), 0);
+	vars.a = init_list(argc, argv);
+	vars.b = 0;
+	setpos(vars.a, count_nodes(vars.a));
+	sorting(&vars);
+	if (issorted(&vars) == 0)
+		ft_printf("error, failed to sort\n");
+	free_stacks(&vars);
+	return (0);
 }

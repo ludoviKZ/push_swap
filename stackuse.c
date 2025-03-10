@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:22 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 16:34:00 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:05:23 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	addnode(t_stak **head, int new_value)
 		*head = make_new_node(new_value);
 		return ;
 	}
-	current = *head;	
+	current = *head;
 	while (current->next != NULL)
 	{
 		current = current->next;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   smartmoves.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/10 17:14:38 by lzorzit           #+#    #+#             */
+/*   Updated: 2025/03/10 17:17:22 by lzorzit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void bunchswap(t_elements *vars, int *rota, int *rotb)
+void	bunchswap(t_elements *vars, int *rota, int *rotb)
 {
 	while (rota[0] != 0 && rota[0] > 0)
 	{
@@ -24,24 +36,24 @@ void bunchswap(t_elements *vars, int *rota, int *rotb)
 	}
 }
 
-void bunchmoves(t_elements *vars, int *rota, int *rotb, int push)
+void	bunchmoves(t_elements *vars, int *rota, int *rotb, int push)
 {
 	if (rota[0] > 0 && rotb[0] > 0)
 	{
-		while(rota[0] > 0 && rotb[0] > 0)
+		while (rota[0] > 0 && rotb[0] > 0)
 		{
 			rotate_ab(vars);
-			rota[0] --;
-			rotb[0] --;
+			rota[0]--;
+			rotb[0]--;
 		}
 	}
 	else if (rota[0] < 0 && rotb[0] < 0)
 	{
-		while(rota[0] < 0 && rotb[0] < 0)
+		while (rota[0] < 0 && rotb[0] < 0)
 		{
 			r_rotate_ab(vars);
-			rota[0] ++;
-			rotb[0] ++;
+			rota[0]++;
+			rotb[0]++;
 		}
 	}
 	bunchswap(vars, rota, rotb);
@@ -53,14 +65,14 @@ void bunchmoves(t_elements *vars, int *rota, int *rotb, int push)
 	rota[0] = 0;
 }
 
-int	smart_rota(t_elements *vars,int pos_next)
+int	smart_rota(t_elements *vars, int pos_next)
 {
 	int		ret;
 	int		stack_size;
 
 	ret = 0;
 	stack_size = count_nodes(vars->a);
-	if (pos_next <= stack_size/2)
+	if (pos_next <= (stack_size / 2))
 	{
 		while (pos_next != 0)
 		{
@@ -79,14 +91,14 @@ int	smart_rota(t_elements *vars,int pos_next)
 	return (ret);
 }
 
-int	smart_rotb(t_elements *vars,int pos_next)
+int	smart_rotb(t_elements *vars, int pos_next)
 {
 	int		ret;
 	int		stack_size;
 
 	ret = 0;
 	stack_size = count_nodes(vars->b);
-	if (pos_next <= stack_size/2)
+	if (pos_next <= (stack_size / 2))
 	{
 		while (pos_next != 0)
 		{
@@ -102,5 +114,5 @@ int	smart_rotb(t_elements *vars,int pos_next)
 			pos_next ++;
 		}
 	}
-	return(ret);
+	return (ret);
 }

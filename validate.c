@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:30 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 16:28:58 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:00:49 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	allunique(char **matr)
 
 	i = 0;
 	len = count_arg(matr);
+	if (len == 0)
+		return (1);
 	while (i < len)
 	{
 		n = i + 1;
@@ -88,16 +90,15 @@ int	isvalid(int argc, char **argv)
 		matr = ft_split(argv[1], ' ');
 	else
 		matr = (argv + 1);
-    if (allunique(matr) == 1)
-			return (0);
+	if (allunique(matr) == 1)
+		return (0);
 	while (matr[i] != 0)
 	{
 		nmbr = ft_atoi(matr[i]);
 		if (nmbr < INT_MIN || nmbr > INT_MAX)
-            return (0);
-		
+			return (0);
 		if (isnbr(matr[i]) == 0)
-           return (0);
+			return (0);
 		i++;
 	}
 	if (matr)

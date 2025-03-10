@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 15:07:19 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:11:47 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,56 +45,55 @@ void	sort_five(t_elements *vars)
 		swap_a(vars);
 }
 
-int calcleast(t_stak *from, t_stak *to)
+int	calcleast(t_stak *from, t_stak *to)
 {
-	t_calcs v;
+	t_calcs	v;
 
 	v.ret = 0;
 	v.pos = 0;
 	v.add = 0;
 	v.least = INT_MAX;
 	v.copya = from;
-	while( v.copya->next != 0)
+	while (v.copya->next != 0)
 	{
 		v.ret = findquick (to, &v);
-		if (v.pos <= (count_nodes(from)/2))
+		if (v.pos <= (count_nodes(from) / 2))
 			v.add ++;
 		else
-			v.add --; 
+			v.add --;
 		v.copya = v.copya->next;
 		v.pos ++;
 	}
-	ft_printf("\n||%i--%i", v.ret, v.least);
-	return(v.ret);
+	return (v.ret);
 }
-int calcleastrev(t_stak *from, t_stak *to)
+
+int	calcleastrev(t_stak *from, t_stak *to)
 {
-	t_calcs v;
+	t_calcs	v;
 
 	v.ret = 0;
 	v.pos = 0;
 	v.add = 0;
 	v.least = INT_MAX;
 	v.copya = from;
-	while( v.copya->next != 0)
+	while (v.copya->next != 0)
 	{
 		v.ret = findquickrev (to, &v);
-		if (v.pos <= (count_nodes(from)/2))
+		if (v.pos <= (count_nodes(from) / 2))
 			v.add ++;
 		else
-			v.add --; 
+			v.add --;
 		v.copya = v.copya->next;
 		v.pos ++;
 	}
-	ft_printf("\n||%i--%i", v.ret, v.least);
-	return(v.ret);
+	return (v.ret);
 }
 
 void	sort_turk(t_elements *vars)
 {
 	int	rota;
 	int	rotb;
-	int to_pushval;
+	int	to_pushval;
 
 	push_b(vars);
 	push_b(vars);
@@ -102,7 +101,7 @@ void	sort_turk(t_elements *vars)
 	{
 		to_pushval = node_pos(vars->a, calcleast(vars->a, vars->b));
 		rota = smart_rota(vars, calcleast(vars->a, vars->b));
-		rotb = smart_rotb(vars, findnode( vars->b, (to_pushval -1)));
+		rotb = smart_rotb(vars, findnode(vars->b, (to_pushval -1)));
 		bunchmoves(vars, &rota, &rotb, 'b');
 	}
 	sort_three(vars);
@@ -113,7 +112,6 @@ void	sort_turk(t_elements *vars)
 		rota = smart_rota(vars, findnode(vars->a, (to_pushval + 1)));
 		bunchmoves(vars, &rota, &rotb, 'a');
 	}
-	
 	rota = smart_rota(vars, findnode(vars->a, (0)));
 	bunchmoves(vars, &rota, &rotb, 'a');
 }
