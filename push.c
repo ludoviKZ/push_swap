@@ -33,12 +33,12 @@ void	push_a(t_elements	*vars)
 {
 	push(&vars->b, &vars->a);
 	vars->moves ++;
-	ft_printf("pb\n");
+	ft_printf("pa\n");
 }
 
 void	push_b(t_elements	*vars)
 {
 	push(&vars->a, &vars->b);
 	vars->moves ++;
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 }

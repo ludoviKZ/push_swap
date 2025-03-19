@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 19:28:31 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:40:38 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int nextleast(t_stak *to, int i)
 	{
 		next --;
 		n = node_pos(to, findnode(to, next));
-		if (n <= next && n != 0)
+		if (n == next)
 			return (findnode(to, next));
 	}
 	return (findnode(to, find_first(to)));

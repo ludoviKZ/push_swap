@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:27 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 17:06:21 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:17:50 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	swap_ab(t_elements	*vars)
 {
 	swap(&vars->a);
 	swap(&vars->b);
-	vars->moves --;
+	vars->moves ++;
 	ft_printf("ss\n");
 }

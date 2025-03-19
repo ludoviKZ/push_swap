@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:12 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/06 17:16:00 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:17:36 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	r_rotate_ab(t_elements	*vars)
 {
 	r_rotate(&vars->a);
 	r_rotate(&vars->b);
-	vars->moves --;
+	vars->moves ++;
 	ft_printf("rrr\n");
 }
