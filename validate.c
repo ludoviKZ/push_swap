@@ -72,7 +72,7 @@ int	isnbr(char *matr)
 		i++;
 	while (matr[i])
 	{
-		if (ft_isdigit(matr[i]) == 1)
+		if (ft_isdigit(matr[i]) == 0)
 			return (1);
 		i++;
 	}
