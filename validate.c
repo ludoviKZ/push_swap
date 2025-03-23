@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:30 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 18:57:17 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/23 15:02:48 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ int	isnbr(char *matr)
 	i = 0;
 	if (matr[i] == '-')
 		i++;
+	if (!matr[i])
+		return(0);
 	while (matr[i])
 	{
 		if (ft_isdigit(matr[i]) == 0)
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	isvalid(int argc, char **argv)

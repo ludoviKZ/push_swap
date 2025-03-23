@@ -81,13 +81,13 @@ int	main(int argc, char **argv)
 
 	vars.moves = 0;
 	if (isvalid(argc, argv) == 0)
-		return (ft_printf("imput invalid"), 0);
+		return (ft_printf("Error, imput invalid"), 0);
 	vars.a = init_list(argc, argv);
 	vars.b = 0;
 	setpos(vars.a, count_nodes(vars.a));
 	sorting(&vars);
 	if (issorted(&vars) == 0)
-		ft_printf("error, failed to sort\n");
+		ft_printf("Error, failed to sort\n");
 	ft_printf("%i", vars.moves);
 	free_stacks(&vars);
 	return (0);

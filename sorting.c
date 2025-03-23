@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 19:13:02 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/23 16:02:15 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	calcleastrev(t_stak *from, t_stak *to)
 {
 	t_calcs	v;
 
+	v.half = count_nodes(from) / 2;
 	v.ret = 0;
 	v.pos = 0;
 	v.add = 0;
@@ -79,7 +80,7 @@ int	calcleastrev(t_stak *from, t_stak *to)
 	while (v.copya->next != 0)
 	{
 		v.ret = findquickrev (to, &v);
-		if (v.pos <= (count_nodes(from) / 2))
+		if (v.pos <= v.half)
 			v.add ++;
 		else
 			v.add --;

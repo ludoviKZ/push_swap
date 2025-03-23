@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:07 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 18:44:56 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/23 16:02:03 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_elements
 }				t_elements;
 
 typedef struct s_calcs
-{
+{	
+	int		half;
 	int		least;
 	int		ret;
 	int		pos;
