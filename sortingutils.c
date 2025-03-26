@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:20 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/23 16:59:13 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/26 14:46:59 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,45 +37,28 @@ int	findnode(t_stak *stack, int find)
 	else
 		return (findnode(stack, closest));
 }
-// int	findquickrev(t_stak *to, t_calcs *v)
-// {
-// 	int	node;
-// 	int diff;
-
-// 	diff = 0;
-// 	if (v->copya->pos > find_first(to))
-// 		node = findnode(to, 0);
-// 	else
-// 		node = findnode(to, (v->copya->pos + 1));
-// 	if ((v->pos > (v->half) && node > (count_nodes(to) / 2)) 
-// 		|| (v->pos <= (v->half) && node <= (count_nodes(to) / 2)))
-// 	{
-// 		if (node >= v->pos)
-// 			diff = v->pos;
-// 		else if (v->pos > node)
-// 			diff = node;
-// 	}
-// 	if (node > (count_nodes(to) / 2))
-// 		node = (count_nodes(to) - node);
-// 	if (node + v->add - diff < v->least)
-// 	{
-// 		v->ret = v->pos;
-// 		v->least = (node + v->add);
-// 	}
-// 	return (v->ret);
-// }
 
 int	findquickrev(t_stak *to, t_calcs *v)
 {
 	int	node;
+	int	diff;
 
+	diff = 0;
 	if (v->copya->pos > find_first(to))
 		node = findnode(to, 0);
 	else
 		node = findnode(to, (v->copya->pos + 1));
+	if ((v->pos > (v->half) && node > (count_nodes(to) / 2))
+		|| (v->pos <= (v->half) && node <= (count_nodes(to) / 2)))
+	{
+		if (node >= v->pos)
+			diff = v->add;
+		else if (v->pos > node && node < (count_nodes(to) / 2))
+			diff = node;
+	}
 	if (node > (count_nodes(to) / 2))
 		node = (count_nodes(to) - node);
-	if (node + v->add < v->least)
+	if (node + v->add - diff < v->least)
 	{
 		v->ret = v->pos;
 		v->least = (node + v->add);
@@ -86,25 +69,36 @@ int	findquickrev(t_stak *to, t_calcs *v)
 int	findquick(t_stak *to, t_calcs *v)
 {
 	int	node;
+	int	diff;
 
+	diff = 0;
 	node = nextleast(to, (v->copya->pos - 1));
+	if ((v->pos > (v->half) && node > (count_nodes(to) / 2))
+		|| (v->pos <= (v->half) && node <= (count_nodes(to) / 2)))
+	{
+		if (node >= v->pos)
+			diff = v->add;
+		else if (v->pos > node && node < (count_nodes(to) / 2))
+			diff = node;
+	}
 	if (node > (count_nodes(to) / 2))
 		node = (count_nodes(to) - node);
-	if (node + v->add < v->least)
+	if (node + v->add - diff < v->least)
 	{
 		v->ret = v->pos;
 		v->least = (node + v->add);
 	}
 	return (v->ret);
 }
-int nextleast(t_stak *to, int i)
+
+int	nextleast(t_stak *to, int i)
 {
 	int		n;
 	int		next;
 
 	next = i;
 	n = node_pos(to, findnode(to, i));
-	if ( n == i)
+	if (n == i)
 		return (findnode(to, i));
 	while (next > 0)
 	{

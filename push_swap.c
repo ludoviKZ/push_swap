@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:03 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/10 19:11:10 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:09:59 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	free_matrixps(char **arr)
 		if (arr[i])
 			free(arr[i]);
 	}
-	if (arr)
-		free(arr);
+	free(arr);
 }
 
 void	free_stacks(t_elements	*vars)
@@ -80,15 +79,14 @@ int	main(int argc, char **argv)
 	t_elements	vars;
 
 	vars.moves = 0;
+	if (argc < 2 || argv[1][0] == '\0')
+		return (0);
 	if (isvalid(argc, argv) == 0)
-		return (ft_printf("Error, imput invalid"), 0);
+		return (ft_printf("Error\n"), 0);
 	vars.a = init_list(argc, argv);
 	vars.b = 0;
 	setpos(vars.a, count_nodes(vars.a));
 	sorting(&vars);
-	if (issorted(&vars) == 0)
-		ft_printf("Error, failed to sort\n");
-	ft_printf("%i", vars.moves);
 	free_stacks(&vars);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:07 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/23 16:02:03 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:09:05 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_elements
 }				t_elements;
 
 typedef struct s_calcs
-{	
+{
 	int		half;
 	int		least;
 	int		ret;
@@ -78,6 +78,7 @@ void	r_rotate_a(t_elements	*vars);
 void	r_rotate_b(t_elements	*vars);
 void	r_rotate_ab(t_elements	*vars);
 void	sort_turk(t_elements *vars);
+long	atol(const char *str);
 int		findquickrev(t_stak *to, t_calcs *v);
 int		node_pos(t_stak *stack, int i);
 int		calcleast(t_stak *from, t_stak *to);

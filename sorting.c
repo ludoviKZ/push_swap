@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:15 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/23 16:02:15 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/26 14:31:45 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	calcleast(t_stak *from, t_stak *to)
 {
 	t_calcs	v;
 
+	v.half = count_nodes(from) / 2;
 	v.ret = 0;
 	v.pos = 0;
 	v.add = 0;

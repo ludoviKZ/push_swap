@@ -6,7 +6,7 @@
 /*   By: lzorzit <lzorzit@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:30 by lzorzit           #+#    #+#             */
-/*   Updated: 2025/03/23 15:02:48 by lzorzit          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:09:00 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	count_arg(char **array)
 	return (i);
 }
 
-void	free_matrix(char **arr)
+void	free_matrix(char **arr, int argc)
 {
 	int	i;
 
 	i = 0;
+	if (argc != 2)
+		return;
 	while (arr[i])
 		i++;
 	while (i > 0)
@@ -54,7 +56,7 @@ int	allunique(char **matr)
 		n = i + 1;
 		while (n < len)
 		{
-			if (ft_atoi(matr[i]) == ft_atoi(matr[n]))
+			if (atol(matr[i]) == atol(matr[n]))
 				return (1);
 			n++;
 		}
@@ -95,10 +97,10 @@ int	isvalid(int argc, char **argv)
 	else
 		matr = (argv + 1);
 	if (allunique(matr) == 1)
-		return (0);
+		return (free_matrix(matr, argc), 0);
 	while (matr[i] != 0)
 	{
-		nmbr = ft_atoi(matr[i]);
+		nmbr = atol(matr[i]);
 		if (nmbr < INT_MIN || nmbr > INT_MAX)
 			ret = 0;
 		if (isnbr(matr[i]) == 0)
@@ -106,6 +108,6 @@ int	isvalid(int argc, char **argv)
 		i++;
 	}
 	if (argc == 2 && matr)
-		free_matrix(matr);
+		free_matrix(matr, argc);
 	return (ret);
 }
